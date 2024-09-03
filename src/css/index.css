@@ -1,0 +1,115 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+.container-position {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post-container {
+  display: flex;
+  border: 1px solid black;
+  width: 400px;
+  height: 550px;
+  margin: 20px;
+  padding: 20px;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.post-header {
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  justify-content: space-between;
+  /* gap: 10px; */
+}
+
+.avatar-user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.follow-options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  padding-right: 10px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.avatar img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.follow {
+  border: 1px solid #059ec4;
+  border-radius: 5px;
+  padding: 5px 20px;
+  font-size: 10px;
+  color: #059ec4;
+}
+
+/* usando o space-between para alinhas os icones */
+
+.post-icons {
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-icons > div {
+  display: flex;
+  gap: 20px;
+}
+
+.post-likes {
+  font-size: 14px;
+}
+
+.post-description {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.hash-tag {
+  color: #059ec4;
+}
+
+.user_name {
+  font-weight: bold;
+}
+
+.post-image {
+  border: 1px solid black;
+  flex: 1;
+}
+
+.post-image img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.liked {
+  color: red;
+}

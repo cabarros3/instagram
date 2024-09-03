@@ -1,5 +1,5 @@
-![Imagem do projeto - clone de posts do insta](./src/clone_insta.png)
-
 # instagram
+
+![Imagem do projeto - clone de posts do insta](./src/clone_insta.png)
 
 A clone of Instagram posts using HTML, CSS, and TypeScript. This project was developed as part of the Formação Acelerada em Programação (FAP) at Softex Pernambuco.

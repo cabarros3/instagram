@@ -13,13 +13,14 @@
 
 .post-container {
   display: flex;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 400px;
   height: 550px;
   margin: 20px;
   padding: 20px;
   flex-direction: column;
   gap: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .post-header {
@@ -100,7 +101,7 @@
 }
 
 .post-image {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   flex: 1;
 }
 

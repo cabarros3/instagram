@@ -66,6 +66,7 @@
   padding: 5px 20px;
   font-size: 10px;
   color: #059ec4;
+  cursor: pointer;
 }
 
 /* usando o space-between para alinhas os icones */
@@ -74,6 +75,14 @@
   font-size: 24px;
   display: flex;
   justify-content: space-between;
+}
+
+#btn-like {
+  cursor: pointer;
+}
+
+#btn-save {
+  cursor: pointer;
 }
 
 .post-icons > div {
@@ -117,4 +126,9 @@
 
 .saved {
   color: #059ec4;
+}
+
+.followed-style {
+  color: #fff;
+  background-color: #059ec4;
 }

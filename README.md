@@ -1,4 +1,4 @@
-# instagram
+# Instagram Clone
 
 ![Imagem do projeto - clone de posts do insta](./src/clone_insta.png)
 

@@ -14,6 +14,8 @@ class Post {
   private _avatarUrl: string;
   private _imageUrl: string;
   private _hashtag: string;
+  private _isFollowed: boolean = false;
+  private _isSaved: boolean = false;
 
   // criando um construtor para "montar" o objeto post
   constructor(
@@ -47,7 +49,7 @@ class Post {
               </div>
               <span>${this._userName}</span>
             </div>
-            <div id="btn-follow" class="follow-options" onclick="follow()">
+            <div id="btn-follow-${this._id}" class="follow-options">
               <div class="follow">Follow</div>
               <div>...</div>
             </div>`;
@@ -64,7 +66,7 @@ class Post {
     const postIcons = document.createElement("div");
     postIcons.className = "post-icons";
     postIcons.innerHTML = `<div>
-              <div id="btn-like" onclick="like()">
+              <div id="btn-like-${this._id}">
                 <i class="fa fa-heart-o"></i>
               </div>
 
@@ -76,14 +78,14 @@ class Post {
                 <i class="fa fa-send-o"></i>
               </div>
             </div>
-            <div id="btn-save" onclick="save()">
+            <div id="btn-save-${this._id}">
               <i class="fa fa-bookmark-o"></i>
             </div>`;
 
     const postLike = document.createElement("div");
     postLike.className = "post-likes";
     postLike.innerHTML = ` <i class="fa fa-heart"></i>
-            <span id="like-count">0</span> likes`;
+            <span id="like-count-${this._id}">0</span> likes`;
 
     const postDescription = document.createElement("div");
     postDescription.className = "post-description";
@@ -100,9 +102,28 @@ class Post {
       postDescription
     );
 
+    // adicionando o postcontainer na tag main que está com flexbox (fica centralizado)
+
     const mainContainer = document.getElementById("container-position");
     if (mainContainer) {
       mainContainer.appendChild(postContainer);
+    }
+
+    // criando os escutadores de evento que substituem on "onclick"
+
+    const likeButton = document.querySelector(`#btn-like-${this._id}`);
+    if (likeButton) {
+      likeButton.addEventListener("click", () => this.like());
+    }
+
+    const saveButton = document.querySelector(`#btn-save-${this._id}`);
+    if (saveButton) {
+      saveButton.addEventListener("click", () => this.save());
+    }
+
+    const followButton = document.querySelector(`#btn-follow-${this._id}`);
+    if (followButton) {
+      followButton.addEventListener("click", () => this.follow());
     }
 
     return postContainer;
@@ -110,10 +131,10 @@ class Post {
 
   like() {
     // to get the element by id
-    const button = document.getElementById("btn-like");
-    const icon = button?.children[0];
+    const button = document.getElementById(`btn-like-${this._id}`);
+    const icon = button?.querySelector("i");
 
-    let likeCountElement = document.getElementById("like-count");
+    let likeCountElement = document.getElementById(`like-count-${this._id}`);
 
     // make a condition to verify if icon isn't undefined or null
     if (!icon || !likeCountElement) return;
@@ -138,6 +159,42 @@ class Post {
 
     this._isLiked = !this._isLiked;
   }
+
+  save() {
+    const button = document.getElementById(`btn-save-${this._id}`);
+    const icon = button?.querySelector("i");
+
+    if (!icon) return;
+
+    if (this._isSaved) {
+      icon.classList.remove("fa-bookmark");
+      icon.classList.remove("saved");
+      icon.classList.add("fa-bookmark-o");
+    } else {
+      icon.classList.add("fa-bookmark");
+      icon.classList.add("saved");
+      icon.classList.remove("fa-bookmark-o");
+    }
+
+    this._isSaved = !this._isSaved;
+  }
+
+  follow() {
+    const button = document.querySelector(`#btn-follow-${this._id}`);
+    const icon = button?.querySelector("div");
+
+    if (!icon) return;
+
+    if (this._isFollowed) {
+      icon.classList.remove("followed-style");
+      icon.innerHTML = "Follow";
+    } else {
+      icon.classList.add("followed-style");
+      icon.innerHTML = "Following";
+    }
+
+    this._isFollowed = !this._isFollowed;
+  }
 }
 
 const posts: Post[] = [];
@@ -160,5 +217,3 @@ for (let i = 1; i <= 15; i++) {
   post.render();
   posts.push(post);
 }
-
-// console.log(posts);

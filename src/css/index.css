@@ -49,7 +49,11 @@
 .avatar {
   width: 40px;
   height: 40px;
-  border: 1px solid black;
+  border: 2px solid;
+  border-top-color: #fe045e;
+  border-right-color: #fe223d;
+  border-left-color: #c703cf;
+  border-bottom-color: #8f23f5;
   border-radius: 50%;
 }
 
@@ -130,5 +134,5 @@
 
 .followed-style {
   color: #fff;
-  background-color: #059ec4;
+  background-color: #28afd1;
 }

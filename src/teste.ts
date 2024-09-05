@@ -100,7 +100,10 @@ class Post {
       postDescription
     );
 
-    document.body.appendChild(postContainer);
+    const mainContainer = document.getElementById("container-position");
+    if (mainContainer) {
+      mainContainer.appendChild(postContainer);
+    }
 
     return postContainer;
   }

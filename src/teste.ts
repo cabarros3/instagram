@@ -13,18 +13,21 @@ class Post {
   private _isLiked: boolean = false;
   private _avatarUrl: string;
   private _imageUrl: string;
+  private _hashtag: string;
 
   // criando um construtor para "montar" o objeto post
   constructor(
     userName: string,
     avatarUrl: string,
     imageUrl: string,
-    description: string
+    description: string,
+    hashtag: string
   ) {
     this._userName = userName; // inicialização da propriedade userName
     this._description = description; // inicialização da propriedade titulo
     this._avatarUrl = avatarUrl;
     this._imageUrl = imageUrl; // inicialização do número de curtidas com 0
+    this._hashtag = hashtag;
   }
 
   render() {
@@ -39,8 +42,7 @@ class Post {
               <div class="avatar">
                 <img
                   src="${this._avatarUrl}"
-                  alt="${this._userName}"
-                  srcset=""
+                  alt=""
                 />
               </div>
               <span>${this._userName}</span>
@@ -52,10 +54,10 @@ class Post {
 
     // imagem
     const postImagem = document.createElement("div");
-    postImagem.className = "post-imagem";
+    postImagem.className = "post-image";
     postImagem.innerHTML = `<img
               src="${this._imageUrl}"
-              alt="${this._description}"
+              alt=""
               srcset=""
             />`;
 
@@ -85,9 +87,9 @@ class Post {
 
     const postDescription = document.createElement("div");
     postDescription.className = "post-description";
-    postDescription.innerHTML = `<div class="user_name">username</div>
+    postDescription.innerHTML = `<div class="user_name">${this._userName}</div>
             <div class="description">
-              your title here <span class="hash-tag">#hashtag</span>
+              ${this._description} <span class="hash-tag">#${this._hashtag}</span>
             </div>`;
 
     postContainer.append(
@@ -97,33 +99,60 @@ class Post {
       postLike,
       postDescription
     );
+
     document.body.appendChild(postContainer);
 
     return postContainer;
   }
 
   like() {
-    this._isLiked = !this._isLiked;
+    // to get the element by id
+    const button = document.getElementById("btn-like");
+    const icon = button?.children[0];
 
-    // incrementa o número de likes
+    let likeCountElement = document.getElementById("like-count");
+
+    // make a condition to verify if icon isn't undefined or null
+    if (!icon || !likeCountElement) return;
+
+    // to remove the filled heart and add an empty heart
     if (this._isLiked) {
-      this._numberOfLikes += 1;
+      icon.classList.remove("fa-heart");
+      icon.classList.remove("liked");
+      icon.classList.add("fa-heart-o");
+
+      this._numberOfLikes--;
     } else {
-      // decrementa o número de likes
-      this._numberOfLikes -= 1;
+      // to add an filled heart and remove the empty heart
+      icon.classList.add("fa-heart");
+      icon.classList.add("liked");
+      icon.classList.remove("fa-heart-o");
+
+      this._numberOfLikes++;
     }
+
+    likeCountElement.innerText = this._numberOfLikes.toString();
+
+    this._isLiked = !this._isLiked;
   }
 }
 
 const posts: Post[] = [];
 
-for (let i = 1; i <= 2; i++) {
+for (let i = 1; i <= 15; i++) {
   const userName = faker.person.firstName();
   const avatarURL = faker.image.avatar();
   const imageUrl = faker.image.urlLoremFlickr();
-  const description = faker.lorem.word();
+  const description = faker.lorem.sentences(2);
+  const hashtagWord = faker.lorem.word();
 
-  const post = new Post(userName, avatarURL, imageUrl, description);
+  const post = new Post(
+    userName,
+    avatarURL,
+    imageUrl,
+    description,
+    hashtagWord
+  );
 
   post.render();
   posts.push(post);

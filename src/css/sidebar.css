@@ -1,0 +1,42 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  position: fixed; /* Fixa a sidebar em relação ao viewport */
+  top: 0; /* Fica no topo */
+  left: 0; /* Fica no lado esquerdo */
+  width: 250px; /* Largura da sidebar */
+  height: 100vh; /* Altura da sidebar igual à altura do viewport */
+  color: #000; /* Cor do texto */
+  padding: 20px; /* Espaçamento interno */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+}
+
+.logo {
+  color: #000;
+  font-size: 12px;
+  padding: 20px;
+  font-family: "PT Serif", serif;
+}
+
+/* Estilo dos links da sidebar */
+.sidebar ul {
+  list-style: none; /* Remove os marcadores da lista */ /* Remove o preenchimento da lista */
+  padding-top: 10px; /* Remove o preenchimento da lista */
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+  padding: 20px; /* Espaçamento entre itens da lista */
+}
+
+.list-item {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}

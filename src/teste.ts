@@ -67,7 +67,7 @@ class Post {
     postIcons.className = "post-icons";
     postIcons.innerHTML = `<div>
               <div id="btn-like-${this._id}">
-                <i class="fa fa-heart-o"></i>
+                <i class="heart fa fa-heart-o"></i>
               </div>
 
               <div>
@@ -147,12 +147,17 @@ class Post {
 
       this._numberOfLikes--;
     } else {
-      // to add an filled heart and remove the empty heart
+      // to add a filled heart and remove the empty heart
       icon.classList.add("fa-heart");
       icon.classList.add("liked");
       icon.classList.remove("fa-heart-o");
+      icon.classList.add("pulse");
 
       this._numberOfLikes++;
+
+      setTimeout(() => {
+        icon.classList.remove("pulse");
+      }, 600);
     }
 
     likeCountElement.innerText = this._numberOfLikes.toString();

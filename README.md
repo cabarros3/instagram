@@ -1,4 +1,4 @@
-# InstaPic - a Instagram clone
+# InstaPic - an Instagram clone
 
 ![Imagem do projeto - clone de posts do insta](./src/imagens_projeto/clone_insta_3.png)
 

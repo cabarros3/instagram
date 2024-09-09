@@ -20,7 +20,7 @@
   color: #000;
   font-size: 12px;
   padding: 20px;
-  font-family: "PT Serif", serif;
+  font-family: "roboto", sans-serif;
 }
 
 /* Estilo dos links da sidebar */
@@ -34,9 +34,116 @@
   padding: 20px; /* Espaçamento entre itens da lista */
 }
 
+/* .sidebar a {
+  color: #000;
+} */
+
+.pd {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
 .list-item {
   font-family: "Roboto", sans-serif;
   display: flex;
   flex-direction: row;
   gap: 10px;
+}
+
+.img-profile {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background: linear-gradient(
+    45deg,
+    #ce7d26 0%,
+    #ee602c 25%,
+    #dc2743 50%,
+    #df1f6b 75%,
+    #e60aa0 100%
+  );
+}
+
+.align {
+  align-items: center;
+}
+
+.sugestions {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  position: fixed; /* Fixa a sidebar em relação ao viewport */
+  top: 0; /* Fica no topo */
+  right: 0; /* Fica no lado esquerdo */
+  width: 300px; /* Largura da sidebar */
+  height: 100vh; /* Altura da sidebar igual à altura do viewport */
+  color: #000; /* Cor do texto */
+  padding: 20px; /* Espaçamento interno */
+  font-family: "Roboto", sans-serif;
+}
+
+.sugest-top {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.light-change {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.light-change i {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 20%;
+  color: #fff;
+  background-color: #000;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.light-change-on {
+  color: #000;
+  background-color: #fff;
+  /* box-shadow: rgba(255, 254, 254, 0.918) 0px 3px 8px; */
+}
+
+.light-change-on i {
+  background-color: #fff;
+  color: #000;
+  /* box-shadow: rgba(255, 254, 254, 0.918) 0px 3px 8px; */
+}
+
+.user-sugestions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.min-follow {
+  padding: 5px 20px;
+  font-size: 12px;
+  color: #059ec4;
+  cursor: pointer;
+}
+
+.developer {
+  color: rgb(151, 151, 151);
+  font-size: 12px;
+  padding-top: 50px;
+}
+
+.developer a {
+  text-decoration: none;
+  color: rgb(151, 151, 151);
+  font-weight: bold;
+}
+
+.on-light {
+  background-color: #000;
+  color: #fff;
 }

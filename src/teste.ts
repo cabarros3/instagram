@@ -1,8 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { v4 as uuidv4 } from "uuid"; // npm i --save-dev @types/uuid
 
-// Todas as classes começam com letra maiúscula
-
+// para criar posts e renderizar os posts
 class Post {
   // criando atributos e definindo eles como privados, pois atributos declarados privados não podem ser acessados e modificados
   private _userName: string; // usar o underscore (underline) para nomear atributos privados
@@ -20,10 +19,10 @@ class Post {
   // criando um construtor para "montar" o objeto post
   constructor(
     userName: string,
-    avatarUrl: string,
-    imageUrl: string,
-    description: string,
-    hashtag: string
+    avatarUrl: string = "",
+    imageUrl: string = "",
+    description: string = "",
+    hashtag: string = ""
   ) {
     this._userName = userName; // inicialização da propriedade userName
     this._description = description; // inicialização da propriedade titulo
@@ -33,8 +32,11 @@ class Post {
   }
 
   render() {
+    //criando onde iremos criar outros elementos os elementos
     const postContainer = document.createElement("div");
     postContainer.className = "post-container";
+
+    //
 
     // header
     const postHeader = document.createElement("div");
@@ -63,6 +65,7 @@ class Post {
               srcset=""
             />`;
 
+    // icones
     const postIcons = document.createElement("div");
     postIcons.className = "post-icons";
     postIcons.innerHTML = `<div>
@@ -82,17 +85,21 @@ class Post {
               <i class="fa fa-bookmark-o"></i>
             </div>`;
 
+    // like
     const postLike = document.createElement("div");
     postLike.className = "post-likes";
     postLike.innerHTML = ` <i class="fa fa-heart"></i>
             <span id="like-count-${this._id}">0</span> likes`;
 
+    // descrição
     const postDescription = document.createElement("div");
     postDescription.className = "post-description";
     postDescription.innerHTML = `<div class="user_name">${this._userName}</div>
             <div class="description">
               ${this._description} <span class="hash-tag">#${this._hashtag}</span>
             </div>`;
+
+    // sugestões
 
     postContainer.append(
       postHeader,
@@ -127,6 +134,52 @@ class Post {
     }
 
     return postContainer;
+  }
+
+  // para renderizar as sugestões
+
+  renderSuggest() {
+    const suggestions = document.createElement("div");
+    suggestions.className = "user-sugestions";
+    suggestions.innerHTML = `<div class="avatar-user">
+              <div class="avatar">
+                <img
+                  src="${this._imageUrl}"
+                  alt=""
+                />
+              </div>
+              <div>${this._userName}</div>
+            </div>
+            <div class="min-follow">Follow</div>`;
+
+    const userSuggestions = document.getElementById("suggestions-top");
+    if (userSuggestions) {
+      userSuggestions.appendChild(suggestions);
+    }
+
+    const followButton = document.querySelector(`#btn-follow-${this._id}`);
+    if (followButton) {
+      followButton.addEventListener("click", () => this.follow());
+    }
+
+    return suggestions;
+  }
+
+  renderExplore() {
+    const explore = document.createElement("div");
+    explore.className = "container-principal";
+    explore.innerHTML = `<div class="image-blocks">
+            <img src="${this._imageUrl}" alt="" />
+          </div>`;
+
+    const findExplore = document.getElementById("container-position");
+    if (findExplore) {
+      findExplore.appendChild(explore);
+    } else {
+      console.error("Element with ID 'container-position' not found.");
+    }
+
+    return explore;
   }
 
   like() {
@@ -202,6 +255,36 @@ class Post {
   }
 }
 
+// criando uma função para torcar a cor do plano de fundo do main
+
+// let isOn: boolean = false;
+
+// function light() {
+//   const button = document.getElementById("change-light");
+//   const icon = button?.children[0];
+//   const mainContainer = document.getElementById("main");
+
+//   if (!mainContainer || !icon) return;
+
+//   if (isOn) {
+//     icon.classList.remove("fa-lightbulb");
+//     icon.classList.add("fa-lightbulb-o");
+//     mainContainer.classList.remove("on-light");
+//     icon.classList.remove("light-change-on");
+//   } else {
+//     icon.classList.remove("fa-lightbulb-o");
+//     icon.classList.add("fa-lightbulb");
+//     mainContainer.classList.add("on-light");
+//     icon.classList.add("light-change-on");
+//   }
+
+//   isOn = !isOn;
+// }
+
+// document.getElementById("change-light")?.addEventListener("click", light);
+
+// para salvar e instanciar os posts e sugestões
+
 const posts: Post[] = [];
 
 for (let i = 1; i <= 15; i++) {
@@ -220,5 +303,37 @@ for (let i = 1; i <= 15; i++) {
   );
 
   post.render();
+
   posts.push(post);
 }
+
+const suggestions: Post[] = [];
+
+for (let i = 1; i <= 5; i++) {
+  const userName = faker.person.firstName();
+  const imageUrl = faker.image.urlLoremFlickr();
+
+  const suggest = new Post(userName, imageUrl);
+  suggestions.push(suggest);
+
+  suggest.renderSuggest();
+}
+
+const explores: Post[] = [];
+
+for (let i = 1; i <= 15; i++) {
+  const imageUrl = faker.image.urlLoremFlickr();
+
+  const explore = new Post(
+    "", // Nome de usuário vazio
+    "", // URL do avatar vazio
+    imageUrl, // URL da imagem
+    "", // Descrição vazia
+    "" // Hashtag vazia
+  );
+  explores.push(explore);
+
+  explore.renderExplore();
+}
+
+console.log(explores);

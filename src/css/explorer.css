@@ -1,0 +1,26 @@
+.container-principal {
+  width: 800px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.image-blocks {
+  border: 1px solid black;
+  height: 300px;
+  width: 300px;
+}
+
+.image-blocks {
+  flex: 1;
+}
+
+.image-blocks img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}

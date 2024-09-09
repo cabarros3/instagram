@@ -1,22 +1,24 @@
+#container-alignment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .container-principal {
-  width: 800px;
+  width: 800px; /* Largura do contêiner principal */
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+  flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte */
+  justify-content: center; /* Ajusta o espaçamento entre os itens */
   margin-top: 30px;
+  gap: 3px; /* Espaço entre as imagens */
 }
 
 .image-blocks {
-  border: 1px solid black;
   height: 300px;
-  width: 300px;
-}
-
-.image-blocks {
-  flex: 1;
+  width: calc(
+    (100% / 3) - 20px
+  ); /* Ajusta a largura para 3 imagens por linha, considerando o gap */
 }
 
 .image-blocks img {

@@ -1,0 +1,59 @@
+// criando uma função para torcar a cor do plano de fundo do main
+
+// let isOn: boolean = false;
+
+// function light() {
+//   const button = document.getElementById("change-light");
+//   const icon = button?.children[0];
+//   const mainContainer = document.getElementById("main");
+
+//   if (!mainContainer || !icon) return;
+
+//   if (isOn) {
+//     icon.classList.remove("fa-lightbulb");
+//     icon.classList.add("fa-lightbulb-o");
+//     mainContainer.classList.remove("on-light");
+//     icon.classList.remove("light-change-on");
+//   } else {
+//     icon.classList.remove("fa-lightbulb-o");
+//     icon.classList.add("fa-lightbulb");
+//     mainContainer.classList.add("on-light");
+//     icon.classList.add("light-change-on");
+//   }
+
+//   isOn = !isOn;
+// }
+
+// document.getElementById("change-light")?.addEventListener("click", light);
+
+// para salvar e instanciar os posts e sugestões
+
+
+/* .light-change {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.light-change i {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 20%;
+  color: #fff;
+  background-color: #000;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.light-change-on {
+  color: #000;
+  background-color: #fff;
+  box-shadow: rgba(255, 254, 254, 0.918) 0px 3px 8px;
+}
+
+.light-change-on i {
+  background-color: #fff;
+  color: #000;
+  box-shadow: rgba(255, 254, 254, 0.918) 0px 3px 8px;
+} */

@@ -31,6 +31,7 @@ class Post {
     this._hashtag = hashtag;
   }
 
+  // para renderizar os posts
   render() {
     //criando onde iremos criar outros elementos os elementos
     const postContainer = document.createElement("div");
@@ -150,21 +151,23 @@ class Post {
               </div>
               <div>${this._userName}</div>
             </div>
-            <div class="min-follow">Follow</div>`;
+            <div id="btnfollow-${this._id}" class="follow">Follow</div>`;
 
     const userSuggestions = document.getElementById("suggestions-top");
     if (userSuggestions) {
       userSuggestions.appendChild(suggestions);
     }
 
-    const followButton = document.querySelector(`#btn-follow-${this._id}`);
-    if (followButton) {
-      followButton.addEventListener("click", () => this.follow());
+    // btn follow para as sugestões
+    const followBtn = document.querySelector(`#btnfollow-${this._id}`);
+    if (followBtn) {
+      followBtn.addEventListener("click", () => this.followSuggestion());
     }
 
     return suggestions;
   }
 
+  // para renderizar o explorar
   renderExplore() {
     const explore = document.createElement("div");
     explore.className = "container-principal";
@@ -182,6 +185,7 @@ class Post {
     return explore;
   }
 
+  // método like para os posts
   like() {
     // to get the element by id
     const button = document.getElementById(`btn-like-${this._id}`);
@@ -218,6 +222,7 @@ class Post {
     this._isLiked = !this._isLiked;
   }
 
+  // método save para os posts
   save() {
     const button = document.getElementById(`btn-save-${this._id}`);
     const icon = button?.querySelector("i");
@@ -237,6 +242,7 @@ class Post {
     this._isSaved = !this._isSaved;
   }
 
+  // método follow para os posts
   follow() {
     const button = document.querySelector(`#btn-follow-${this._id}`);
     const icon = button?.querySelector("div");
@@ -253,37 +259,24 @@ class Post {
 
     this._isFollowed = !this._isFollowed;
   }
+
+  // método follow para as sugestões
+  followSuggestion() {
+    const button = document.querySelector(`#btnfollow-${this._id}`);
+
+    if (!button) return;
+
+    if (this._isFollowed) {
+      button.classList.remove("followed-style");
+      button.innerHTML = "Follow";
+    } else {
+      button.classList.add("followed-style");
+      button.innerHTML = "Following";
+    }
+
+    this._isFollowed = !this._isFollowed;
+  }
 }
-
-// criando uma função para torcar a cor do plano de fundo do main
-
-// let isOn: boolean = false;
-
-// function light() {
-//   const button = document.getElementById("change-light");
-//   const icon = button?.children[0];
-//   const mainContainer = document.getElementById("main");
-
-//   if (!mainContainer || !icon) return;
-
-//   if (isOn) {
-//     icon.classList.remove("fa-lightbulb");
-//     icon.classList.add("fa-lightbulb-o");
-//     mainContainer.classList.remove("on-light");
-//     icon.classList.remove("light-change-on");
-//   } else {
-//     icon.classList.remove("fa-lightbulb-o");
-//     icon.classList.add("fa-lightbulb");
-//     mainContainer.classList.add("on-light");
-//     icon.classList.add("light-change-on");
-//   }
-
-//   isOn = !isOn;
-// }
-
-// document.getElementById("change-light")?.addEventListener("click", light);
-
-// para salvar e instanciar os posts e sugestões
 
 const posts: Post[] = [];
 
@@ -319,21 +312,23 @@ for (let i = 1; i <= 5; i++) {
   suggest.renderSuggest();
 }
 
-const explores: Post[] = [];
+document.addEventListener("DOMContentLoaded", () => {
+  const explores: Post[] = [];
 
-for (let i = 1; i <= 15; i++) {
-  const imageUrl = faker.image.urlLoremFlickr();
+  for (let i = 1; i <= 15; i++) {
+    const imageUrl = faker.image.urlLoremFlickr();
 
-  const explore = new Post(
-    "", // Nome de usuário vazio
-    "", // URL do avatar vazio
-    imageUrl, // URL da imagem
-    "", // Descrição vazia
-    "" // Hashtag vazia
-  );
-  explores.push(explore);
+    const explore = new Post(
+      "", // Nome de usuário vazio
+      "", // URL do avatar vazio
+      imageUrl, // URL da imagem
+      "", // Descrição vazia
+      "" // Hashtag vazia
+    );
+    explores.push(explore);
 
-  explore.renderExplore();
-}
+    explore.renderExplore();
+  }
+});
 
-console.log(explores);
+// console.log(explores);

@@ -20,8 +20,8 @@
 .post-container {
   display: flex;
   /* border: 1px solid black; */
-  width: 400px;
-  height: 550px;
+  width: 450px;
+  height: 650px;
   margin: 20px;
   padding: 20px;
   flex-direction: column;

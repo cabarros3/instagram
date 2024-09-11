@@ -12,6 +12,7 @@
   justify-content: center; /* Ajusta o espaçamento entre os itens */
   margin-top: 30px;
   gap: 3px; /* Espaço entre as imagens */
+  background-color: #fff;
 }
 
 .image-blocks {

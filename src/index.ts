@@ -172,40 +172,25 @@ class Post {
 
   // método like para os posts
   like() {
-    // to get the element by id
     const button = document.getElementById(`btn-like-${this._id}`);
     const icon = button?.querySelector("i");
-
     let likeCountElement = document.getElementById(`like-count-${this._id}`);
-
-    // make a condition to verify if icon isn't undefined or null
     if (!icon || !likeCountElement) return;
+  
+  icon.classList.toggle("fa-heart");
+  icon.classList.toggle("liked");
+  icon.classList.toggle("fa-heart-o");
 
-    // to remove the filled heart and add an empty heart
-    if (this._isLiked) {
-      icon.classList.remove("fa-heart");
-      icon.classList.remove("liked");
-      icon.classList.add("fa-heart-o");
+  this._numberOfLikes += this._isLiked ? -1 : 1;
+  likeCountElement.innerText = this._numberOfLikes.toString();
+  this._isLiked = !this._isLiked;
 
-      this._numberOfLikes--;
-    } else {
-      // to add a filled heart and remove the empty heart
-      icon.classList.add("fa-heart");
-      icon.classList.add("liked");
-      icon.classList.remove("fa-heart-o");
-      icon.classList.add("pulse");
+  icon.classList.add("pulse");
+  setTimeout(() => {
+    icon.classList.remove("pulse");
+  }, 600);
+}
 
-      this._numberOfLikes++;
-
-      setTimeout(() => {
-        icon.classList.remove("pulse");
-      }, 600);
-    }
-
-    likeCountElement.innerText = this._numberOfLikes.toString();
-
-    this._isLiked = !this._isLiked;
-  }
 
   addComment() {
     const commentInput = document.getElementById(

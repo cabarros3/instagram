@@ -100,14 +100,24 @@ class Post {
               ${this._description} <span class="hash-tag">#${this._hashtag}</span>
             </div>`;
 
-    // sugestões
+    // comentários
+    const postComments = document.createElement("div");
+    postComments.className = "post-comments";
+    postComments.innerHTML = `
+              <div class="comments-list" id="comments-list-${this._id}"></div>
+                <div class="comment-input">
+                  <textarea id="comment-input-${this._id}" placeholder="Add a comment..." rows="3"></textarea>
+                  <div class="post-comment hidden" id="comment-submit-${this._id}">Post</div>
+                </div>
+            `;
 
     postContainer.append(
       postHeader,
       postImagem,
       postIcons,
       postLike,
-      postDescription
+      postDescription,
+      postComments
     );
 
     // adicionando o postcontainer na tag main que está com flexbox (fica centralizado)
@@ -132,6 +142,29 @@ class Post {
     const followButton = document.querySelector(`#btn-follow-${this._id}`);
     if (followButton) {
       followButton.addEventListener("click", () => this.follow());
+    }
+
+    // comentários
+    const commentInput = document.getElementById(
+      `comment-input-${this._id}`
+    ) as HTMLTextAreaElement;
+    const commentButton = document.getElementById(`comment-submit-${this._id}`);
+
+    if (commentInput && commentButton) {
+      // Adicione um evento de input para o textarea
+      commentInput.addEventListener("input", () => {
+        // Verifique o valor do textarea
+        if (commentInput.value.trim() === "") {
+          // Esconda o botão se o textarea estiver vazio
+          commentButton.classList.add("hidden");
+        } else {
+          // Mostre o botão se o textarea contiver algum texto
+          commentButton.classList.remove("hidden");
+        }
+      });
+
+      // Adicione o evento de clique no botão de postagem
+      commentButton.addEventListener("click", () => this.addComment());
     }
 
     return postContainer;
@@ -172,6 +205,28 @@ class Post {
     likeCountElement.innerText = this._numberOfLikes.toString();
 
     this._isLiked = !this._isLiked;
+  }
+
+  addComment() {
+    const commentInput = document.getElementById(
+      `comment-input-${this._id}`
+    ) as HTMLTextAreaElement;
+    const commentsList = document.getElementById(`comments-list-${this._id}`);
+    if (!commentInput || !commentsList) return;
+
+    const commentText = commentInput.value.trim();
+    if (commentText) {
+      // Cria um novo elemento de comentário
+      const commentElement = document.createElement("div");
+      commentElement.className = "comment";
+      commentElement.innerText = commentText;
+
+      // Adiciona o comentário à lista de comentários
+      commentsList.appendChild(commentElement);
+
+      // Limpa o campo de entrada de comentário
+      commentInput.value = "";
+    }
   }
 
   // método save para os posts

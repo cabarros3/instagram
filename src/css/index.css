@@ -185,3 +185,42 @@
 .heart.pulse {
   animation: pulse 0.6s ease;
 }
+
+.comment-input {
+  color: #059ec4;
+}
+
+textarea {
+  width: 90%; /* ou qualquer largura específica, como 300px */
+  height: 20px; /* ou qualquer altura específica */
+  box-sizing: border-box; /* Inclui padding e borda na largura e altura */
+  border: none;
+  resize: none;
+  margin-top: 10px;
+}
+
+textarea:focus {
+  border-color: none; /* Borda azul quando em foco */
+  outline: none; /* Remove o contorno padrão do navegador */
+  background-color: #fff; /* Cor de fundo quando em foco */
+}
+
+.post-comment {
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.comment-input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 14px;
+}
+
+.comment {
+  font-size: 14px;
+}
+
+.hidden {
+  display: none; /* Ou use visibility: hidden; se preferir */
+}

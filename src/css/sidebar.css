@@ -15,6 +15,7 @@
   padding: 20px; /* Espaçamento interno */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
   background-color: #fff;
+  z-index: 1000; /* Garante que a sidebar fique acima de outros elementos */
 }
 
 .logo {
@@ -74,7 +75,7 @@
   display: flex;
   flex-direction: column;
   /* justify-content: space-around; */
-  position: fixed; /* Fixa a sidebar em relação ao viewport */
+  position: fixed;
   top: 0; /* Fica no topo */
   right: 0; /* Fica no lado esquerdo */
   width: 300px; /* Largura da sidebar */

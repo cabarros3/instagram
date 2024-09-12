@@ -1,3 +1,33 @@
+/* #container-alignment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-principal {
+  width: 800px; 
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; 
+  justify-content: center; 
+  margin-top: 30px;
+  gap: 3px;
+  background-color: #fff;
+}
+
+.image-blocks {
+  height: 300px;
+  width: calc(
+    (100% / 3) - 20px
+  ); 
+}
+
+.image-blocks img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+} */
+
 #container-alignment {
   display: flex;
   flex-direction: column;
@@ -16,14 +46,32 @@
 }
 
 .image-blocks {
+  position: relative; /* Necessário para posicionar a sobreposição corretamente */
   height: 300px;
   width: calc(
     (100% / 3) - 20px
   ); /* Ajusta a largura para 3 imagens por linha, considerando o gap */
+  overflow: hidden; /* Garante que a sobreposição não ultrapasse os limites da imagem */
 }
 
 .image-blocks img {
   object-fit: cover;
   height: 100%;
   width: 100%;
+  display: block; /* Remove o espaçamento abaixo da imagem */
+}
+
+.image-overlay {
+  position: absolute; /* Faz com que a sobreposição cubra toda a área da imagem */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Cor preta com 70% de opacidade */
+  opacity: 1; /* Visível por padrão */
+  transition: opacity 0.3s ease; /* Transição suave para a mudança de opacidade */
+}
+
+.image-blocks:hover .image-overlay {
+  opacity: 0.5; /* Torna a sobreposição invisível ao passar o mouse */
 }

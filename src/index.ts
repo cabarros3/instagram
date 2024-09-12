@@ -47,6 +47,7 @@ class Post {
               <div class="avatar">
                 <img
                   src="${this._avatarUrl}"
+                  onerror="this.onerror=null; this.src='https://cdn.pixabay.com/photo/2018/11/13/22/01/instagram-3814080_640.png';" 
                   alt=""
                 />
               </div>
@@ -62,7 +63,7 @@ class Post {
     postImagem.className = "post-image";
     postImagem.innerHTML = `<img
               src="${this._imageUrl}"
-              alt=""
+              alt="${this._description}"
               srcset=""
             />`;
 
@@ -176,21 +177,20 @@ class Post {
     const icon = button?.querySelector("i");
     let likeCountElement = document.getElementById(`like-count-${this._id}`);
     if (!icon || !likeCountElement) return;
-  
-  icon.classList.toggle("fa-heart");
-  icon.classList.toggle("liked");
-  icon.classList.toggle("fa-heart-o");
 
-  this._numberOfLikes += this._isLiked ? -1 : 1;
-  likeCountElement.innerText = this._numberOfLikes.toString();
-  this._isLiked = !this._isLiked;
+    icon.classList.toggle("fa-heart");
+    icon.classList.toggle("liked");
+    icon.classList.toggle("fa-heart-o");
 
-  icon.classList.add("pulse");
-  setTimeout(() => {
-    icon.classList.remove("pulse");
-  }, 600);
-}
+    this._numberOfLikes += this._isLiked ? -1 : 1;
+    likeCountElement.innerText = this._numberOfLikes.toString();
+    this._isLiked = !this._isLiked;
 
+    icon.classList.add("pulse");
+    setTimeout(() => {
+      icon.classList.remove("pulse");
+    }, 600);
+  }
 
   addComment() {
     const commentInput = document.getElementById(

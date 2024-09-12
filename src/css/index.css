@@ -5,17 +5,18 @@
   background-color: #fff;
 }
 
-/* main {
-  display: flex;
-  flex-direction: row;
-  gap: 20%;
-} */
+#main {
+  margin-left: 250px; /* Compensa a largura da sidebar */
+  padding: 15px;
+  position: relative; /* Para garantir o posicionamento correto dos elementos filhos */
+}
 
 #container-position {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin-left: 260px; */
+  width: calc(100% - 250px);
+  position: relative;
 }
 
 .post-container {

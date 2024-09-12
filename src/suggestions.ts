@@ -36,6 +36,8 @@ class Suggestion {
               <div class="avatar">
                 <img
                   src="${this._imageUrl}"
+                  alt="avatar"
+                  onerror="this.onerror=null; this.src='https://cdn.pixabay.com/photo/2018/11/13/22/01/instagram-3814080_640.png';" 
                   alt=""
                 />
               </div>

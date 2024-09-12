@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 import { v4 as uuidv4 } from "uuid"; // npm i --save-dev @types/uuid
 
 class Story {
-     // criando atributos e definindo eles como privados, pois atributos declarados privados não podem ser acessados e modificados
+  // criando atributos e definindo eles como privados, pois atributos declarados privados não podem ser acessados e modificados
   private _userName: string; // usar o underscore (underline) para nomear atributos privados
   private _description: string; // atributo privado
   private _createdAt: Date = new Date(); // atributo privado
@@ -38,7 +38,9 @@ class Story {
       <div class="story">
           <div class="storyImage">
           <img
-            src="https://cdn.pixabay.com/photo/2018/11/13/22/01/instagram-3814080_640.png"
+            src="${this._avatarUrl}"
+            alt="avatar"
+            onerror="this.onerror=null; this.src='https://cdn.pixabay.com/photo/2018/11/13/22/01/instagram-3814080_640.png';" 
           />
           </div>
       </div>
@@ -46,19 +48,16 @@ class Story {
 
     // Adiciona a barra de stories ao contêiner da barra inicial
 
-    const barraInicial = document.getElementById("barra-story");
+    const barraInicial = document.getElementById("story-barra");
     if (barraInicial) {
       barraInicial.appendChild(storyBar);
     }
   }
-
-
-
 }
 // Crie a barra de stories quando a página carregar
 const stories: Story[] = [];
 
-for (let i = 1; i <= 15; i++) {
+for (let i = 1; i <= 8; i++) {
   const userNameStory = faker.person.firstName();
   const avatarStory = faker.image.avatar();
 

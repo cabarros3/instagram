@@ -32,7 +32,9 @@ class Explore {
   renderExplore() {
     const explore = document.createElement("div");
     explore.className = "image-blocks";
-    explore.innerHTML = `<img src="${this._imageUrl}" alt="" />`;
+    explore.innerHTML = `<div class="image-overlay">
+      <img src="${this._imageUrl}" alt="">
+    </div>`;
 
     const findExplore = document.getElementById("container-principal");
     if (findExplore) {

@@ -15,6 +15,8 @@ class Post {
   private _hashtag: string;
   private _isFollowed: boolean = false;
   private _isSaved: boolean = false;
+  private _commentUserName: string = faker.person.firstName();
+  private _commentAvatarUrl: string = faker.image.avatar();
 
   // criando um construtor para "montar" o objeto post
   constructor(
@@ -75,7 +77,7 @@ class Post {
                 <i class="heart fa fa-heart-o"></i>
               </div>
 
-              <div>
+              <div class="comment-open-modal">
                 <i class="fa fa-comment-o"></i>
               </div>
 
@@ -135,6 +137,13 @@ class Post {
       likeButton.addEventListener("click", () => this.like());
     }
 
+    // const commentButtonModal = document.querySelector(
+    //   `.comment-open-modal` // Use a classe apropriada se estiver definindo um seletor de classe única
+    // );
+    // if (commentButtonModal) {
+    //   commentButtonModal.addEventListener("click", () => this.openModal());
+    // }
+
     const saveButton = document.querySelector(`#btn-save-${this._id}`);
     if (saveButton) {
       saveButton.addEventListener("click", () => this.save());
@@ -171,6 +180,51 @@ class Post {
     return postContainer;
   }
 
+  // openModal() {
+  //   const modal = document.getElementById("post-modal") as HTMLElement;
+  //   const modalContent = document.getElementById(
+  //     "modal-post-content"
+  //   ) as HTMLElement;
+
+  //   if (!modal || !modalContent) return;
+
+  //   modalContent.innerHTML = `
+  //     <div class="modal-header">
+  //       <div class="avatar">
+  //         <img
+  //           src="${this._avatarUrl}"
+  //           onerror="this.onerror=null; this.src='https://cdn.pixabay.com/photo/2018/11/13/22/01/instagram-3814080_640.png';"
+  //           alt=""
+  //         />
+  //       </div>
+  //       <span>${this._userName}</span>
+  //     </div>
+  //     <div class="modal-body">
+  //       <img src="${this._imageUrl}" alt="${this._description}" />
+  //       <div class="description">
+  //         ${this._description} <span class="hash-tag">#${this._hashtag}</span>
+  //       </div>
+  //     </div>
+  //   `;
+
+  //   modal.classList.remove("hidden");
+
+  //   // Adiciona o evento de fechar o modal com o botão de fechar
+  //   const closeButton = modal.querySelector(".close");
+  //   if (closeButton) {
+  //     closeButton.addEventListener("click", () => {
+  //       this.closeModal();
+  //     });
+  //   }
+  // }
+
+  // closeModal() {
+  //   const modal = document.getElementById("post-modal");
+  //   if (modal) {
+  //     modal.classList.add("hidden");
+  //   }
+  // }
+
   // método like para os posts
   like() {
     const button = document.getElementById(`btn-like-${this._id}`);
@@ -204,7 +258,17 @@ class Post {
       // Cria um novo elemento de comentário
       const commentElement = document.createElement("div");
       commentElement.className = "comment";
-      commentElement.innerText = commentText;
+      commentElement.innerHTML = ` <div class="avatar-comment">
+          <img
+            src="${this._commentAvatarUrl}"
+            onerror="this.onerror=null; this.src='https://cdn.pixabay.com/photo/2018/11/13/22/01/instagram-3814080_640.png';"
+            alt=""
+          />
+        </div>
+        <div class="comment-text">
+        <strong>${this._commentUserName}</strong> 
+          ${commentText}
+        </div>`;
 
       // Adiciona o comentário à lista de comentários
       commentsList.appendChild(commentElement);
@@ -274,3 +338,16 @@ for (let i = 1; i <= 15; i++) {
 
   posts.push(post);
 }
+
+// Adiciona um evento global para fechar o modal ao clicar fora dele
+// window.addEventListener("click", (event) => {
+//   const modal = document.getElementById("post-modal") as HTMLElement;
+//   const modalContent = document.getElementById(
+//     "modal-post-content"
+//   ) as HTMLElement;
+
+//   // Verifica se o clique foi fora do conteúdo do modal
+//   if (modal && !modalContent?.contains(event.target as Node)) {
+//     modal.classList.add("hidden");
+//   }
+// });

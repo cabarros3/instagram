@@ -73,6 +73,27 @@
   border-radius: 50%;
 }
 
+.avatar-comment {
+  width: 20px;
+  height: 20px;
+  border: 2px solid;
+  border-top-color: #fe045e;
+  border-right-color: #fe223d;
+  border-left-color: #c703cf;
+  border-bottom-color: #8f23f5;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.avatar-comment img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
 .follow {
   border: 1px solid #059ec4;
   border-radius: 5px;
@@ -221,6 +242,12 @@ textarea:focus {
 
 .comment {
   font-size: 14px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .hidden {

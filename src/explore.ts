@@ -32,9 +32,11 @@ class Explore {
   renderExplore() {
     const explore = document.createElement("div");
     explore.className = "image-blocks";
-    explore.innerHTML = `<div class="image-overlay">
-      <img src="${this._imageUrl}" alt="">
-    </div>`;
+    explore.innerHTML = `<img src="${this._imageUrl}" alt="">
+    <div id="btn-like-${this._id}" class="image-overlay">
+      <i class="fa fa-heart-o fa-2x"></i>
+    </div>
+     `;
 
     const findExplore = document.getElementById("container-principal");
     if (findExplore) {
@@ -43,14 +45,37 @@ class Explore {
       console.error("Element with ID 'container-principal' not found.");
     }
 
+    const likeButton = document.querySelector(`#btn-like-${this._id}`);
+    if (likeButton) {
+      likeButton.addEventListener("click", () => this.like());
+    }
+
     return explore;
+  }
+
+  like() {
+    const button = document.getElementById(`btn-like-${this._id}`);
+    const icon = button?.querySelector("i");
+
+    if (!icon) return;
+
+    icon.classList.toggle("fa-heart");
+    icon.classList.toggle("liked");
+    icon.classList.toggle("fa-heart-o");
+
+    this._isLiked = !this._isLiked;
+
+    icon.classList.add("pulse");
+    setTimeout(() => {
+      icon.classList.remove("pulse");
+    }, 600);
   }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   const explores: Explore[] = [];
 
-  for (let i = 1; i <= 15; i++) {
+  for (let i = 1; i <= 24; i++) {
     const imageUrl = faker.image.urlLoremFlickr();
 
     const explore = new Explore(

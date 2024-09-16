@@ -1,8 +1,24 @@
-* {
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
-  background-color: #fff;
+/* Regras para telas menores */
+@media screen and (max-width: 500px) {
+  #main {
+    margin-left: 0px;
+    padding: 0px;
+  }
+
+  #container-position {
+    width: 100%; /* Ocupa a largura total */
+    padding: 0; /* Remove o padding, se necessário */
+  }
+
+  .post-container {
+    width: 100%; /* Define a largura como 100% da tela */
+    /* max-width: 500px; */
+    height: auto; /* Ajusta a altura automaticamente */
+    padding: 0; /* Remove padding interno para ajustar o layout */
+    margin: 0; /* Remove margens para garantir alinhamento total */
+    box-sizing: border-box;
+    box-shadow: none;
+  }
 }
 
 #main {
@@ -21,14 +37,14 @@
 
 .post-container {
   display: flex;
-  /* border: 1px solid black; */
-  width: 450px;
-  height: 650px;
-  margin: 20px;
-  padding: 20px;
   flex-direction: column;
+  width: 450px; /* Largura fixa ou ajustada conforme necessário */
+  height: 650px; /* Altura fixa ou ajustada conforme necessário */
+  margin: 20px; /* Margem ao redor de cada post */
+  padding: 20px; /* Padding interno do post */
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+  box-sizing: border-box; /* Inclui padding e borda na largura total */
   gap: 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   font-family: "Roboto", sans-serif;
 }
 

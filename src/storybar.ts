@@ -55,13 +55,13 @@ class Story {
   }
 }
 // Crie a barra de stories quando a página carregar
-const stories: Story[] = [];
+// const stories: Story[] = [];
 
-for (let i = 1; i <= 8; i++) {
-  const userNameStory = faker.person.firstName();
-  const avatarStory = faker.image.avatar();
+// for (let i = 1; i <= 8; i++) {
+//   const userNameStory = faker.person.firstName();
+//   const avatarStory = faker.image.avatar();
 
-  const story = new Story(userNameStory, avatarStory);
-  story.createStoryBar();
-  stories.push(story);
-}
+//   const story = new Story(userNameStory, avatarStory);
+//   story.createStoryBar();
+//   stories.push(story);
+// }

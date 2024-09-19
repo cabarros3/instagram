@@ -35,15 +35,6 @@ Como dev:
 
 # Meu processo
 
-## Que ferramentas/tecnologias utilizei?
-
-- HTML5 semântico
-- Propriedades padrão do CSS
-- Flexbox
-- TypeScript
-- Bibliotecas: uuid, fakerJs
-- Vite
-
 ## O que aprendi?
 
 Neste projeto pude aprimorar meus conhecimentos em Flexbox, position, animation e transition. No que se refere a typescript e JavaScript, pude implementar funcionalidades dinâmicas para o site.
